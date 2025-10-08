@@ -24,11 +24,11 @@ class MainActivity : AppCompatActivity() {
         val contactNumber = binding.editTextContactNumber.text?.toString().orEmpty()
         val myDisplayName = binding.editTextMyDisplayName.text?.toString().orEmpty()
         val includeJunior = binding.checkBoxJunior.isChecked
-        val jobTitle = binding.spinnerJobTitle.selectedItem.toString()
+        val jobTitle = binding.spinnerJobTitle.selectedItem?.toString()
         val immediateStart = binding.checkBoxImmediateStart.isChecked
         val startDate = binding.editTextStartDate.text?.toString().orEmpty()
 
-        val textString = "$contactName, $contactNumber"
+        val textString = "Contact name:  $contactName, Contact number: $contactNumber, Include junior: $includeJunior, Job Title: $jobTitle,, Immediate start: $immediateStart, Start date: $startDate."
         Toast.makeText(this, textString, Toast.LENGTH_LONG).show()
     }
 }
