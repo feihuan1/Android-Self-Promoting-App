@@ -1,8 +1,10 @@
 package com.example.selfpromotingapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.selfpromotingapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
 
         binding.buttonPreview.setOnClickListener {
             onPreviewClicked()
@@ -28,7 +32,16 @@ class MainActivity : AppCompatActivity() {
         val immediateStart = binding.checkBoxImmediateStart.isChecked
         val startDate = binding.editTextStartDate.text?.toString().orEmpty()
 
-        val textString = "Contact name:  $contactName, Contact number: $contactNumber, Include junior: $includeJunior, Job Title: $jobTitle,, Immediate start: $immediateStart, Start date: $startDate."
-        Toast.makeText(this, textString, Toast.LENGTH_LONG).show()
+        val previewActivityIntent: Intent = Intent(this, PreviewActivity::class.java)
+
+        previewActivityIntent.putExtra("Contact Name", contactName)
+        previewActivityIntent.putExtra("Contact number", contactNumber)
+        previewActivityIntent.putExtra("My Display Name", myDisplayName)
+        previewActivityIntent.putExtra("Include Junior", includeJunior)
+        previewActivityIntent.putExtra("Job Title", jobTitle)
+        previewActivityIntent.putExtra("Immediate Start", immediateStart)
+        previewActivityIntent.putExtra("Start Date", startDate)
+
+        startActivity(previewActivityIntent)
     }
 }
