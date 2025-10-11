@@ -2,6 +2,7 @@ package com.example.selfpromotingapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -21,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         binding.buttonPreview.setOnClickListener {
             onPreviewClicked()
         }
+
+        val spinnerValues: Array<String> = arrayOf("Sales", "Frontend Engineer", "ML Engineer")
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerValues)
+
+        binding.spinnerJobTitle.adapter = spinnerAdapter
+
     }
 
     private fun onPreviewClicked() {
